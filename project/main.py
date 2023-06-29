@@ -6,8 +6,9 @@ def main():
 
     sum = []
     sum1 = []
+
     while True:
-        keyword = input('Введите название компании\nили введите 1 для выхода\n')
+        keyword = input('Введите id компании для получения вакансий\nили введите 1 для окончания выбора компаний\n')
         if keyword == '1':
             break
         else:
@@ -16,11 +17,20 @@ def main():
             sum.append(res[0])
             for el in res:
                 sum1.append(el)
+    if len(sum) == 0:
+        print('Вы не ввели ни одного id компании')
+        quit()
 
-    obj = DBManager()
-    obj.create_tables()
-    obj = DBManager()
-    obj.compl_data(sum, sum1)
+    res1 = input('Введите 1 - если нужно создать таблицы в базе данных и заполнить их данными\n'
+                 '2 - продолжить заполнение таблиц данными\n')
+    if res1 == '1':
+       obj = DBManager()
+       obj.create_tables()
+       obj = DBManager()
+       obj.compl_data(sum, sum1)
+    elif res1 == '2':
+       obj = DBManager()
+       obj.compl_data(sum, sum1)
     while True:
         num = input('Выберите из списка:\n1 - получить список всех компаний и количество вакансий у каждой\n'
                 '2 - получить список всех вакансий с указанием названия компании, '

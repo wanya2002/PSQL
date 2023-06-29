@@ -8,13 +8,13 @@ class HeadHunter():
     url = 'https://api.hh.ru/vacancies'
 
 
-    def __init__(self, keyword):
+    def __init__(self, employer_id):
         """Инициализируем объект класса"""
 
         self.params = {
-            "per_page": 50,
+            "per_page": 10,
             "page": None,
-            "text": keyword,
+            "employer_id": employer_id
         }
         self.headers = {}
 
@@ -60,6 +60,8 @@ class HeadHunter():
             formatted_vacancies.append(formatted_vacancy)
 
         return formatted_vacancies
+
+
 
 
 
